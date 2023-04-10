@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglos</title>
+    <link rel="shortcut icon" href="add.png" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="icono.png" alt="img">
+    </header>
+    <main>
+        <section id="buttons">
+            <div id="grupos">
+                <p>Número:</p> <input type="number" id="number">
+                <button onclick="agregar('A')">Agregar al conjunto A</button>
+                <button onclick="agregar('B')">Agregar al conjunto B</button>
+            </div>
+            <hr>
+            
+            <div id="entradas">
+                <p class="lbl">Unión: </p><input type="text" id="union"><button onclick="union()">Unión</button>
+                <br><br>
+                <p class="lbl">Interseccion: </p><input type="text" id="interseccion"><button onclick="interseccion()">Interseccion</button>
+                <br><br>
+                <p class="lbl">Diferencia A de B: </p> <input type="text" id="diferenciaA"><button onclick="diferenciaA()">Diferencia A de B</button>
+                <br><br>
+                <p class="lbl">Diferencia B de A:</p><input type="text" id="diferenciaB"><button onclick="diferenciaB()">Diferencia B de A</button>
+                <br><br>
+                <p class="lbl">Diferencia simetrica:</p><input type="text" id="diferenciaSim"><button onclick="diferenciaSim()">Simetrica</button>       
+            </div>
+        </section>
+    
+        <section id="tables">
+            <div id="contTablaA">
+                <h4>Arreglo A</h4>
+                <table id="tablaA">
+                </table>
+            </div>
+            <div id="contTablaB">
+                <h4>Arreglo B</h4>
+                <table id="tablaB">    
+                </table>
+            </div>
+        </section>
+    
+    
+    </main>
+    <script src="index.js">
+    </script>
+</body>
+</html>
