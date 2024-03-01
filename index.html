@@ -4,53 +4,151 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arreglos</title>
-    <link rel="shortcut icon" href="add.png" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
+    <meta name="description" content="Conversor de distintos sistemas numéricos con diferentes operaciones basicas en conjuntos A y B." />
+    <title>Calculadora de conjuntos | Operaciones matematicas básicas con conjuntos numéricos</title>
+    <link rel="shortcut icon" href="/img/icon.svg" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <img src="icono.png" alt="img">
-    </header>
-    <main>
-        <section id="buttons">
-            <div id="grupos">
-                <p>Número:</p> <input type="number" id="number">
-                <button onclick="agregar('A')">Agregar al conjunto A</button>
-                <button onclick="agregar('B')">Agregar al conjunto B</button>
-            </div>
-            <hr>
-            
-            <div id="entradas">
-                <p class="lbl">Unión: </p><input type="text" id="union"><button onclick="union()">Unión</button>
-                <br><br>
-                <p class="lbl">Interseccion: </p><input type="text" id="interseccion"><button onclick="interseccion()">Interseccion</button>
-                <br><br>
-                <p class="lbl">Diferencia A de B: </p> <input type="text" id="diferenciaA"><button onclick="diferenciaA()">Diferencia A de B</button>
-                <br><br>
-                <p class="lbl">Diferencia B de A:</p><input type="text" id="diferenciaB"><button onclick="diferenciaB()">Diferencia B de A</button>
-                <br><br>
-                <p class="lbl">Diferencia simetrica:</p><input type="text" id="diferenciaSim"><button onclick="diferenciaSim()">Simetrica</button>       
-            </div>
-        </section>
+<body class="text-gray-400 bg-gray-900 body-font">
+  <header class="flex items-center justify-center py-10">
+    <img src="img/icon.svg" alt="img">
+  </header>
+  <main>
+    <section class="py-10">
+      <div class="container px-5 py-18 mx-auto">
+              <div class="text-center mb-20">
+                <h2 class="text-xs text-yellow-400 tracking-widest font-medium title-font mb-1">CONJUNTO CLARO</h2>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font text-white mb-4">Simplificando las Matemáticas de Conjuntos</h1>
+                <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-400 text-opacity-80">Nuestra herramienta está diseñada para simplificar tus tareas y ayudarte a navegar por el complejo mundo de los conjuntos con facilidad.</p>
+              </div>
+
+              <div class="flex flex-wrap m-4">
+                <div class="p-4 md:w-1/3">
+                  <div class="flex rounded-lg h-full bg-gray-800 bg-opacity-60 p-8 flex-col">
+                    <div class="flex items-center mb-3">
+                      <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-yellow-500 text-white flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                      </div>
+                      <h2 class="text-white text-lg title-font font-medium">Unión</h2>
+                    </div>
+                    <div class="flex-grow">
+                      <p class="leading-relaxed text-base">Operación fundamental que combina todos los elementos presentes en dos conjuntos distintos en un solo conjunto.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 md:w-1/3">
+                  <div class="flex rounded-lg h-full bg-gray-800 bg-opacity-60 p-8 flex-col">
+                    <div class="flex items-center mb-3">
+                      <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-yellow-500 text-white flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </div>
+                      <h2 class="text-white text-lg title-font font-medium">Intersección</h2>
+                    </div>
+                    <div class="flex-grow">
+                      <p class="leading-relaxed text-base">Operación que consiste en encontrar los elementos que son comunes a dos o más conjuntos.</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="p-4 md:w-1/3">
+                  <div class="flex rounded-lg h-full bg-gray-800 bg-opacity-60 p-8 flex-col">
+                    <div class="flex items-center mb-3">
+                      <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-yellow-500 text-white flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <circle cx="6" cy="6" r="3"></circle>
+                          <circle cx="6" cy="18" r="3"></circle>
+                          <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                        </svg>
+                      </div>
+                      <h2 class="text-white text-lg title-font font-medium">Diferencia Simétrica</h2>
+                    </div>
+                    <div class="flex-grow">
+                      <p class="leading-relaxed text-base">Operación que representa los elementos que pertenecen a uno de los conjuntos, pero no al otro.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+      </div>
+    </section>
+
+    <section class="text-gray-400">
+      <div class="container px-5 py-18 mx-auto">
+        <div id="grupos" class="w-5/6 flex items-end gap-x-10 pb-8 mx-auto">
+          <div class="sm:mb-0 flex-grow">
+            <label for="number" class="leading-7 text-sm text-gray-400">Ingresa un número:</label>
+            <input type="number" id="number" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>                      
+            <button class="text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="agregar('A')">Agregar al conjunto A</button>
+            <button class="text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="agregar('B')">Agregar al conjunto B</button>
+            <button class="text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="calcularOperaciones()">Calcular Operaciones</button>
+          </div>
+      </div>
+    </section>
+
+    <section class="py-4">
+      <div class="flex items-start justify-center w-5/6 mx-auto py-8">
+        <table class="w-1/2" id="tablaA">
+          <thead class="text-s text-gray-700 uppercase bg-gray-700">
+            <tr>
+              <th scope="col" class="px-6 py-4 rounded-tl-lg text-gray-100/70">
+                Arreglo A
+              </th>
+            </tr>
+          </thead>
+        </table>
+        <table class="w-1/2" id="tablaB">
+          <thead class="text-s text-gray-700 uppercase bg-gray-700">
+            <tr>
+              <th scope="col" class="px-6 py-4 rounded-tr-lg text-gray-100/70">
+                Arreglo B
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </section>
+
+    <section class="pb-10 text-gray-400">
+      <div class="container px-5 py-18 mx-auto">
+        <div class="flex flex-col gap-y-8" id="entradas">
+          <div class="sm:mb-0 flex-grow">
+            <label for="union" class="leading-7 text-sm text-gray-400">Unión: </label>
+            <input id="union" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>   
+          <div class="sm:mb-0 flex-grow">
+            <label for="interseccion" class="leading-7 text-sm text-gray-400">Intersección: </label>
+            <input id="interseccion" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div> 
+          <div class="sm:mb-0 flex-grow">
+            <label for="diferenciaA" class="leading-7 text-sm text-gray-400">Diferencia A de B: </label>
+            <input id="diferenciaA" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div> 
+          <div class="sm:mb-0 flex-grow">
+            <label for="diferenciaB" class="leading-7 text-sm text-gray-400">Diferencia B de A: </label>
+            <input id="diferenciaB" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div> 
+          <div class="sm:mb-0 flex-grow">
+            <label for="diferenciaSim" class="leading-7 text-sm text-gray-400">Diferencia simetrica: </label>
+            <input id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>       
+        </div>
+      </div>
+    </section>
+
     
-        <section id="tables">
-            <div id="contTablaA">
-                <h4>Arreglo A</h4>
-                <table id="tablaA">
-                </table>
-            </div>
-            <div id="contTablaB">
-                <h4>Arreglo B</h4>
-                <table id="tablaB">    
-                </table>
-            </div>
-        </section>
-    
-    
-    </main>
-    <script src="index.js">
-    </script>
+  </main>
+  <footer>
+
+  </footer>
+  <script src="index.js">
+  </script>
 </body>
 </html>
