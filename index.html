@@ -7,10 +7,9 @@
     <meta name="description" content="Conversor de distintos sistemas numéricos con diferentes operaciones basicas en conjuntos A y B." />
     <title>Calculadora de conjuntos | Operaciones matematicas básicas con conjuntos numéricos</title>
     <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
-<<<<<<< HEAD
+
     <link rel="shortcut icon" href="/img/icon.svg" type="image/x-icon">
-=======
->>>>>>> 3e16d7a6a7c0747efa991489dfb9261a5d1bd62a
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
@@ -125,23 +124,23 @@
         <div class="flex flex-col gap-y-8" id="entradas">
           <div class="sm:mb-0 flex-grow">
             <label for="union" class="leading-7 text-sm text-gray-400">Unión: </label>
-            <input id="union" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <input disabled id="union" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>   
           <div class="sm:mb-0 flex-grow">
             <label for="interseccion" class="leading-7 text-sm text-gray-400">Intersección: </label>
-            <input id="interseccion" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <input disabled id="interseccion" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="sm:mb-0 flex-grow">
             <label for="diferenciaA" class="leading-7 text-sm text-gray-400">Diferencia A de B: </label>
-            <input id="diferenciaA" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <input disabled id="diferenciaA" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="sm:mb-0 flex-grow">
             <label for="diferenciaB" class="leading-7 text-sm text-gray-400">Diferencia B de A: </label>
-            <input id="diferenciaB" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <input disabled id="diferenciaB" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="sm:mb-0 flex-grow">
             <label for="diferenciaSim" class="leading-7 text-sm text-gray-400">Diferencia simetrica: </label>
-            <input id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <input disabled id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>       
         </div>
       </div>
@@ -153,11 +152,27 @@
     <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <img src="img/icon.svg" alt="">
       <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">Prueba tambien  —
-        <a href="https://twitter.com/knyttneve" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">Conversor Binario</a>
+        <a href="http://conversorbinario.calculadoradeconjuntos.site/" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">Conversor Binario</a>
       </p>
       
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-        <p class="text-yellow-400">Donaciones</p>
+        <div id="donate-button-container">
+          <div id="donate-button"></div>
+          <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+          <script>
+          PayPal.Donation.Button({
+          env:'production',
+          hosted_button_id:'CL7R8HH25SSHN',
+          image: {
+          src:'https://www.paypalobjects.com/es_XC/i/btn/btn_donate_LG.gif',
+          alt:'Donar con el botón PayPal',
+          title:'PayPal - The safer, easier way to pay online!',
+          }
+          }).render('#donate-button');
+          </script>
+        </div>
+          
+        <p class="text-yellow-400 ml-10">Donaciones</p>
       </span>
     </div>
   </footer>
