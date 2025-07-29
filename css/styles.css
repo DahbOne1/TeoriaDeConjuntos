@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #0729466e;
+  transition: .4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; width: 20px;
+  left: 5px; bottom: 5px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #0729466e;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+input:checked + header {
+  background-color: #0729466e;
+}
+
+/* Temas */
+body.dark-mode {
+  background-color: #111827;
+  color: #efeff1;
+}
+
+body.light-mode {
+  background-color: #efeff1;
+  color: #111827;
+}
+
+
+
+
+/*Colores de letras*/
+.color-picker{
+  display: flex;
+  gap: 6px;
+  z-index: 1000;
+  background-color: #0729466e;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-color: #efeff1;
+  border: 1px solid;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
