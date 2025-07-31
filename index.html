@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="text-gray-400 bg-gray-900 body-font">
-  <header class="flex items-center justify-between px-8 py-5 border-b border-b-1 border-[#efeff1]/20 fixed w-full backdrop-blur-md ">
+  
+  <header class="hidden sm:hidden md:flex items-center justify-between px-8 py-5 border-b border-b-1 border-[#efeff1]/20 fixed w-full backdrop-blur-md ">
     <div class="flex gap-4 items-center">
       <img class="w-10 " src="img/icon.svg" alt="img">
       <span class="font-semibold">CONJUNTO CLARO</span>
@@ -41,35 +42,88 @@
     </div>
 
   </header>  
+
+  <!-- HEADER PARA MÓVIL -->
+  <header class="block sm:block md:hidden px-4 py-4 border-b border-[#efeff1]/20 fixed w-full backdrop-blur-md z-50">
+    <div class="flex items-center justify-between">
+      <div class="flex gap-3 items-center">
+        <img class="w-10" src="img/icon.svg" alt="Logo">
+        <span class="font-semibold text-sm">CONJUNTO CLARO</span>
+      </div>
+
+      <!-- Ícono de menú hamburguesa -->
+      <button id="menu-toggle" class="focus:outline-none">
+        <!-- Aquí pones tu ícono personalizado -->
+        <img src="img/menu.svg" alt="Menú" class="w-6 h-6">
+      </button>
+    </div>
+
+    <!-- Menú desplegable oculto por defecto -->
+    <nav id="mobile-menu" class="hidden flex-col gap-4 mt-4 font-semibold">
+      <ul class="flex flex-col gap-3">
+        <li><a href="#inicio">INICIO</a></li>
+        <li><a href="#aprender">APRENDER</a></li>
+        <li><a href="#ejercicios">EJERCICIOS</a></li>
+        <li><a href="#contactanos">CONTACTANOS</a></li>
+      </ul>
+      
+      <!-- Color picker -->
+      <div class="toggle-container mt-4 flex items-center gap-2">
+        <div class="color-picker backdrop-blur-md flex gap-2">
+          <div class="color-circle w-4 h-4 rounded-full" data-color="blue" style="background-color: blue;"></div>
+          <div class="color-circle w-4 h-4 rounded-full" data-color="red" style="background-color: red;"></div>
+          <div class="color-circle w-4 h-4 rounded-full" data-color="green" style="background-color: green;"></div>
+          <div class="color-circle w-4 h-4 rounded-full" data-color="orange" style="background-color: orange;"></div>
+          <div class="color-circle w-4 h-4 rounded-full" data-color="yellow" style="background-color: yellow;"></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+
   <main>
     <!--SECCIÓN DE INICIO-->
-    <section id="inicio" class="text-gray-400 bg-gray-900 body-font">
+    <section id="inicio" class="text-gray-400 body-font">
       <div class="container mx-auto flex px-5 py-14 md:flex-row flex-col items-center">
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 ">
           <img class="object-cover object-center rounded" alt="hero" src="img/VennsDiagramHero.png">
         </div>
         <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white"><img class="inline-block w-14 mb-4 color-white mr-4" src="img/icon.svg" alt="">CONJUNTO CLARO</h1>
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-yellow-400"><img class="inline-block w-14 mb-4 color-white mr-4" src="img/icon.svg" alt="">CONJUNTO CLARO</h1>
           <p class="mb-8 leading-relaxed">Nuestra herramienta está diseñada para simplificar tus tareas y ayudarte a navegar por el complejo mundo de los conjuntos con facilidad. Con una interfaz intuitiva y recursos visuales atractivos, podrás comprender conceptos clave como subconjuntos, uniones, intersecciones y diagramas de Venn de una manera práctica y visual.</p>
           <p class="text-sm mt-2 text-gray-500 mb-8 w-full">¿Prefieres usar esta herramienta sin conexión?
           Descarga nuestra versión de escritorio y accede a todas las funciones directamente desde tu computadora, sin necesidad de internet.</p>
           <div class="flex lg:flex-row md:flex-col text-gray-300">
-            <button class=" bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
+            <a href="https://davidarcos.gumroad.com/l/qtkjr" target="_blank" class="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
               <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg>
               <span class="ml-4 flex items-start flex-col leading-none">
                 <span class="text-xs text-gray-400 mb-1">OBTEN LA APLICACIÓN DE</span>
                 <span class="title-font font-medium">ESCRITORIO</span>
               </span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
     </section>
     
     <!--SECCIÓN DE APRENDIZAJE-->
-    <section id="aprender"  class="text-gray-400 bg-gray-900 body-font py-20">
-      <div class="container px-5 py-10 mx-auto">
-        <div class="flex flex-wrap -m-4">
+    <section id="aprender"  class="text-gray-400 body-font py-28">
+      <!--Explicación de conjuntos-->
+      <article class="w-11/12 mx-auto -m-2 px-5 py-10 mx-auto border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg border-2 border-gray-800 ">
+          <h2 class="font-semibold text-4xl text-yellow-400">¿Qué es un conjunto?</h2>
+          <p class="mt-8">
+            En matemáticas, un <strong>conjunto</strong> es una colección bien definida de objetos, llamados elementos o miembros del conjunto.
+            Los conjuntos pueden contener números, letras, figuras, personas u objetos.
+          </p>
+          <p class="mt-4">
+            Los conjuntos se representan habitualmente con letras mayúsculas (A, B, C...) y sus elementos entre llaves. Son fundamentales en las matemáticas
+            y se usan para representar relaciones, operaciones, y estructuras.
+          </p>
+      </article>
+      <!--Operaciones basicas-->
+      <article class="container mx-auto px-10 py-10 mx-auto">
+        <div class="flex flex-wrap">
           <div class="p-4 md:w-1/3">
             <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg">
               <img class="w-64 mx-auto  object-cover object-center" src="img/diagrams/vennssUnion.png" alt="blog">
@@ -99,88 +153,106 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
+      <!--Galeria de imagenes-->
+     <!-- <article id="galeria">
+        <h2>Galería de Operaciones de Conjuntos</h2>
+        <div class="galeria-contenedor">
+          <div class="imagen">
+            <img src="img/diagrams/vennssDiference.png" alt="Unión de conjuntos">
+            <p><strong>Unión</strong>: Elementos que pertenecen a A o a B.</p>
+          </div>
+          <div class="imagen">
+            <img src="img/interseccion.png" alt="Intersección de conjuntos">
+            <p><strong>Intersección</strong>: Elementos comunes entre A y B.</p>
+          </div>
+          <div class="imagen">
+            <img src="img/diferencia.png" alt="Diferencia de conjuntos">
+            <p><strong>Diferencia</strong>: Elementos en A que no están en B.</p>
+          </div>
+          <!-- Agrega 9 más con imágenes distintas -->
+          <!-- Usa nombres como img/operacion4.png, img/operacion5.png, etc. 
+        </div>
+      </article>-->
     </section>
 
     <!--SECCIÓN DE EJERCICIOS-->
-    <section id="ejercicios" class="py-20 flex bg-gray-800 rounded-xl w-11/12 mx-auto shadow-black shadow-2xl">
-      <article class="flex flex-col w-1/2">
-          <!--SECCIÓN DE FORMULARIO-->
-        <div class="text-gray-400">
-          <div class="container px-5 py-18 mx-auto">
-            <div id="grupos" class="w-5/6 flex flex-col justify-center items-end gap-10 pb-8 mx-auto ">
-              <div class="sm:mb-0 flex-grow w-full">
-                <label for="number" class="leading-7 text-sm text-gray-400">Ingresa un número:</label>
-                <input type="number" id="number" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              </div>          
-              <div class="w-full flex">
-                <button class="w-full text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="agregar('A')">Agregar al conjunto A</button>
-                <button class="w-full text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="agregar('B')">Agregar al conjunto B</button>
-                <button class="w-full text-l bg-gray-800 border-2 border-gray-800  py-2 px-4 rounded hover:bg-gray-900 transition-all ease-in-out" onclick="calcularOperaciones()">Calcular Operaciones</button>
-              </div>                            
+    <section id="ejercicios" class="py-20 flex flex-col md:flex-row border-2 border-gray-800 rounded-xl w-11/12 mx-auto shadow-black shadow-xl">
+      <article class="flex flex-col w-full md:w-1/2">
+        <!--SECCIÓN DE FORMULARIO-->
+        <div class="container mx-auto px-5">
+          <div id="grupos" class="w-full flex flex-col justify-center items-end gap-10 pb-8 mx-auto">
+            <div class="sm:mb-0 flex-grow w-full">
+              <label for="number" class="leading-7 text-2xl font-semibold text-yellow-400 block mb-6 sm:mb-10">Ingresa un número:</label>
+              <input type="number" id="number" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="w-full flex flex-col sm:flex-row gap-4">
+              <button class="text-center font-semibold w-full text-sm bg-gray-800 py-3 px-5 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none" onclick="agregar('A')">Agregar al conjunto A</button>
+              <button class="text-center font-semibold w-full text-sm bg-gray-800 py-3 px-5 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none" onclick="agregar('B')">Agregar al conjunto B</button>
+              <button class="text-center font-bold w-full text-sm bg-yellow-500 py-3 px-5 rounded-md hover:bg-yellow-600 text-black focus:outline-none" onclick="calcularOperaciones()">Calcular Operaciones</button>
             </div>
           </div>
         </div>
 
         <!--SECCIÓN DE CONJUNTOS-->
-        <div class="py-4">
-          <div class="flex items-start justify-center w-5/6 mx-auto py-8">
-            <table class="w-1/2" id="tablaA">
-              <thead class="text-s text-gray-700 uppercase bg-gray-700">
-                <tr>
-                  <th scope="col" class="px-6 py-4 rounded-tl-lg text-gray-100/70">
-                    Arreglo A
-                  </th>
-                </tr>
-              </thead>
-            </table>
-            <table class="w-1/2" id="tablaB">
-              <thead class="text-s text-gray-700 uppercase bg-gray-700">
-                <tr>
-                  <th scope="col" class="px-6 py-4 rounded-tr-lg text-gray-100/70">
-                    Arreglo B
-                  </th>
-                </tr>
-              </thead>
-            </table>
-          </div>
+        <div class="flex flex-col sm:flex-row items-start justify-center w-full mx-auto px-5 mt-6 sm:mt-8 gap-4">
+          <table class="w-full sm:w-1/2" id="tablaA">
+            <thead class="text-s text-gray-700 uppercase bg-gray-700">
+              <tr>
+                <th scope="col" class="px-6 py-4 rounded-tl-2xl text-gray-100/70">
+                  Arreglo A
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <table class="w-full sm:w-1/2" id="tablaB">
+            <thead class="text-s text-gray-700 uppercase bg-gray-700">
+              <tr>
+                <th scope="col" class="px-6 py-4 rounded-tr-2xl text-gray-100/70">
+                  Arreglo B
+                </th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </article>
 
       <!--SECCIÓN DE RESULTADOS-->
-      <article class="pb-10 text-gray-400 w-1/2">
-        <div class="container px-5 py-18 mx-auto">
-          <div class="flex flex-col gap-y-8" id="entradas">
+      <article class="pb-10 text-gray-400 w-full md:w-1/2 mt-10 md:mt-0">
+        <div class="container px-5 py-10 mx-auto">
+          <h3 class="block mb-6 text-2xl font-semibold text-yellow-400">Resultados</h3>
+          <div class="flex flex-col gap-y-6" id="entradas">
             <div class="sm:mb-0 flex-grow">
               <label for="union" class="leading-7 text-sm text-gray-400">Unión: </label>
-              <input disabled id="union" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>   
+              <input disabled id="union" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
+            </div>
             <div class="sm:mb-0 flex-grow">
               <label for="interseccion" class="leading-7 text-sm text-gray-400">Intersección: </label>
-              <input disabled id="interseccion" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div> 
+              <input disabled id="interseccion" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
+            </div>
             <div class="sm:mb-0 flex-grow">
               <label for="diferenciaA" class="leading-7 text-sm text-gray-400">Diferencia A de B: </label>
-              <input disabled id="diferenciaA" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div> 
+              <input disabled id="diferenciaA" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
+            </div>
             <div class="sm:mb-0 flex-grow">
               <label for="diferenciaB" class="leading-7 text-sm text-gray-400">Diferencia B de A: </label>
-              <input disabled id="diferenciaB" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div> 
+              <input disabled id="diferenciaB" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
+            </div>
             <div class="sm:mb-0 flex-grow">
               <label for="diferenciaSim" class="leading-7 text-sm text-gray-400">Diferencia simetrica: </label>
-              <input disabled id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>       
+              <input disabled id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
+            </div>
           </div>
         </div>
       </article>
     </section>
 
+
     <!--SECCIÓN DE CONTACTO-->
-   <section id="contactanos" class="text-gray-400 bg-gray-900 body-font">
+  <section id="contactanos" class="text-gray-400  body-font py-10">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-12">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Contactanos</h1>
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-400">Contactanos</h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Envianos cualquier sugerencia que tengas para mejorar nuestra herramienta.</p>
       </div>
       <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -188,23 +260,23 @@
           <div class="p-2 w-1/2">
             <div class="relative">
               <label for="name" class="leading-7 text-sm text-gray-400">Nombre</label>
-              <input type="text" id="name" name="name" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <input type="text" id="name" name="name" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
           </div>
           <div class="p-2 w-1/2">
             <div class="relative">
               <label for="email" class="leading-7 text-sm text-gray-400">Correo electrónico</label>
-              <input type="email" id="email" name="email" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <input type="email" id="email" name="email" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
           </div>
           <div class="p-2 w-full">
             <div class="relative">
               <label for="message" class="leading-7 text-sm text-gray-400">Mensaje</label>
-              <textarea id="message" name="message" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+              <textarea id="message" name="message" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
             </div>
           </div>
           <div class="p-2 w-full">
-            <button class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">Button</button>
+            <button class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">ENVIAR</button>
           </div>
         </div>
       </div>
@@ -212,26 +284,9 @@
   </section>
 
 
-    <!--SECCIÓN DE DONACIONES-->
-    <section class="text-gray-400 bg-gray-900 body-font">
-      <div class="container px-5 py-24 mx-auto flex flex-wrap">
-        <h2 class="sm:text-3xl text-2xl text-white font-medium title-font mb-2 md:w-2/5">Kickstarter Actually Pinterest Brunch Bitters Occupy</h2>
-        <div class="md:w-3/5 md:pl-6">
-          <p class="leading-relaxed text-base">Taxidermy bushwick celiac master cleanse microdosing seitan. Fashion axe four dollar toast truffaut, direct trade kombucha brunch williamsburg keffiyeh gastropub tousled squid meh taiyaki drinking vinegar tacos.</p>
-          <div class="flex md:mt-4 mt-6">
-            <button class="inline-flex text-white bg-yellow-500 border-0 py-1 px-4 focus:outline-none hover:bg-yellow-600 rounded">Button</button>
-            <a class="text-yellow-400 inline-flex items-center ml-4">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
 
   </main>
-  <footer class="container px-5 py-8 mx-auto flex justify-center items-center sm:flex-row flex-col">
+  <footer class="container px-5 pb-8 mx-auto flex justify-center items-center sm:flex-row flex-col">
        <img src="img/icon.svg" alt="">
       <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">Prueba tambien  —
         <a href="http://conversorbinario.calculadoradeconjuntos.site/" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">Conversor Binario</a>
