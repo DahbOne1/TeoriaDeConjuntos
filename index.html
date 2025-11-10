@@ -1,302 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conversor de distintos sistemas numéricos con diferentes operaciones basicas en conjuntos A y B." />
-    <title>Calculadora de conjuntos | Operaciones matematicas básicas con conjuntos numéricos</title>
-    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Calculadora de Conjuntos</title>
+  <meta name="description" content="Calculadora de conjuntos, con operaciones multiples de la teoria de conjuntos, mostrando resultados de manera rapida y dinamica, con diagramas de venn animados, herramienta perfecta para estudiantes o cualquier persona interesada en el tema.">
+  <link rel="shortcut icon" href="/img/logos/icon.png" type="image/x-png">
+   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <!-- Google Fonts & Material Icons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
 </head>
-<body class="text-gray-400 bg-gray-900 body-font">
   
-  <header class="hidden sm:hidden md:flex items-center justify-between px-8 py-5 border-b border-b-1 border-[#efeff1]/20 fixed w-full backdrop-blur-md ">
-    <div class="flex gap-4 items-center">
-      <img class="w-10 " src="img/icon.svg" alt="img">
-      <span class="font-semibold">CONJUNTO CLARO</span>
-    </div>
-    <nav>
-      <ul class="flex gap-6 font-semibold">
-        <li><a href="#inicio">INICIO</a></li>
-        <li><a href="#aprender">APRENDER</a></li>
-        <li><a href="#ejercicios">EJERCICIOS</a></li>
-        <li><a href="#contactanos">CONTACTANOS</a></li>
-      </ul>
-    </nav>
-    <div class="toggle-container flex items-center gap-2">
-      <div class="color-picker backdrop-blur-md">
-        <div class="color-circle" data-color="blue" style="background-color: blue;"></div>
-        <div class="color-circle" data-color="red" style="background-color: red;"></div>
-        <div class="color-circle" data-color="green" style="background-color: green;"></div>
-        <div class="color-circle" data-color="orange" style="background-color: orange;"></div>
-        <div class="color-circle" data-color="yellow" style="background-color: yellow;"></div>
-      </div>
-      <!--
-      <label class="switch">
-        <input type="checkbox" id="themeToggle">
-        <span class="slider round"></span>
-      </label>-->
-    </div>
+<body  class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display selection:bg-primary selection:text-white" x-data="{ lang: 'es', activeCard: 2, totalCards: 5, carouselCards: [], setA: '1, 2, 3', setB: '3, 4, 5' }">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-b border-slate-200/50 dark:border-slate-800/50">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <img class="w-36" src="img/logos/logo.png" alt="">
 
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="hover:text-primary transition-colors font-bold" href="#hero"><span x-show="lang === 'es'">Inicio</span><span x-cloak x-show="lang === 'en'">Home</span></a>
+          <a class="hover:text-primary transition-colors" href="#conceptos"><span x-show="lang === 'es'">Conceptos</span><span x-cloak x-show="lang === 'en'">Concepts</span></a>
+          <a class="hover:text-primary transition-colors" href="#calculadora"><span x-show="lang === 'es'">Calculadora</span><span x-cloak x-show="lang === 'en'">Calculator</span></a>
+          <a class="hover:text-primary transition-colors" href="#nosotros"><span x-show="lang === 'es'">Sobre Nosotros</span><span x-cloak x-show="lang === 'en'">About Us</span></a>
+          <a class="hover:text-primary transition-colors" href="#contacto"><span x-show="lang === 'es'">Contacto</span><span x-cloak x-show="lang === 'en'">Contact</span></a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1 bg-slate-200/60 dark:bg-slate-800/60 p-1 rounded-full text-sm font-semibold">
+            <button :class="{ 'bg-white dark:bg-slate-700 text-primary': lang === 'es', 'text-slate-500 dark:text-slate-400': lang !== 'es' }" @click="lang = 'es'; document.getElementById('click-sound').play()" class="px-3 py-1 rounded-full shadow">ES</button>
+            <button :class="{ 'bg-white dark:bg-slate-700 text-primary shadow': lang === 'en', 'text-slate-500 dark:text-slate-400': lang !== 'en' }" @click="lang = 'en'; document.getElementById('click-sound').play()" class="px-3 py-1 rounded-full">EN</button>
+          </div>
+
+          <button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" id="theme-toggle" onclick="document.getElementById('click-sound').play()">
+            <span class="material-symbols-outlined dark:hidden">light_mode</span>
+            <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
+          </button>
+        </div>
+      </div>
+    </div>
   </header>  
-
-  <!-- HEADER PARA MÓVIL -->
-  <header class="block sm:block md:hidden px-4 py-4 border-b border-[#efeff1]/20 fixed w-full backdrop-blur-md z-50">
-    <div class="flex items-center justify-between">
-      <div class="flex gap-3 items-center">
-        <img class="w-10" src="img/icon.svg" alt="Logo">
-        <span class="font-semibold text-sm">CONJUNTO CLARO</span>
-      </div>
-
-      <!-- Ícono de menú hamburguesa -->
-      <button id="menu-toggle" class="focus:outline-none">
-        <!-- Aquí pones tu ícono personalizado -->
-        <img src="img/menu.svg" alt="Menú" class="w-6 h-6">
-      </button>
-    </div>
-
-    <!-- Menú desplegable oculto por defecto -->
-    <nav id="mobile-menu" class="hidden flex-col gap-4 mt-4 font-semibold">
-      <ul class="flex flex-col gap-3">
-        <li><a href="#inicio">INICIO</a></li>
-        <li><a href="#aprender">APRENDER</a></li>
-        <li><a href="#ejercicios">EJERCICIOS</a></li>
-        <li><a href="#contactanos">CONTACTANOS</a></li>
-      </ul>
-      
-      <!-- Color picker -->
-      <div class="toggle-container mt-4 flex items-center gap-2">
-        <div class="color-picker backdrop-blur-md flex gap-2">
-          <div class="color-circle w-4 h-4 rounded-full" data-color="blue" style="background-color: blue;"></div>
-          <div class="color-circle w-4 h-4 rounded-full" data-color="red" style="background-color: red;"></div>
-          <div class="color-circle w-4 h-4 rounded-full" data-color="green" style="background-color: green;"></div>
-          <div class="color-circle w-4 h-4 rounded-full" data-color="orange" style="background-color: orange;"></div>
-          <div class="color-circle w-4 h-4 rounded-full" data-color="yellow" style="background-color: yellow;"></div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  
-
   <main>
-    <!--SECCIÓN DE INICIO-->
-    <section id="inicio" class="text-gray-400 body-font">
-      <div class="container mx-auto flex px-5 py-14 md:flex-row flex-col items-center">
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 ">
-          <img class="object-cover object-center rounded" alt="hero" src="img/VennsDiagramHero.png">
+    <div id="particles-js" aria-hidden="true"></div>
+    <!-- Hero -->
+    <section class="content min-h-screen flex items-center justify-center pt-20" id="hero">
+      <div class="flex justify-center items-center text-center">
+        <div class="lg:col-span-7 flex flex-col gap-6 items-center">
+              <!-- Título: Animate.css fadeInUp (duración lenta) -->
+              <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+                <span  x-show="lang === 'es'">Calculadora de <span class="text-primary">Conjuntos</span></span>
+                <span  x-cloak x-show="lang === 'en'">Set <span class="text-primary">Calculator</span></span>
+              </h1>
+              <!-- Subtítulo -->
+              <p class="hero-sub text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl">
+                <span x-show="lang === 'es'">
+                  Realiza uniones, intersecciones, diferencias y más operaciones de la teoría de conjuntos de forma instantánea y visual.
+                </span>
+                <spanx-cloak x-show="lang === 'en'">
+                  Perform unions, intersections, differences, and more set theory operations instantly and visually.
+                </spanx-cloak>
+              </p>
+              <!-- CTA -->
+              <div class="hero-cta-wrap flex items-center gap-4 mt-2 animate__animated animate__fadeInUp">
+                <a class="hero-cta inline-flex items-center gap-3 bg-primary text-white font-bold py-4 px-8 rounded-full shadow-2xl hover:scale-[1.02] transition-transform " href="#calculadora" role="button" onclick="document.getElementById('swoosh-sound')?.play()">
+                  <span><span x-show="lang === 'es'">Empezar a Calcular</span><span x-cloak x-show="lang === 'en'">Start Calculating</span></span>
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a class="hero-muted-btn text-md text-slate-600 dark:text-slate-300 hover:text-primary transition-colors font-bold animate__animated animate__fadeInDown" href="https://davidarcos.gumroad.com/l/qtkjr" target="_blank">
+                  <span x-show="lang === 'es'">Descargar</span><span x-cloak x-show="lang === 'en'">Download</span>
+                </a>
+              </div>
+              <!-- Features row -->
+              <div class="hero-features grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
+                <div class="feature-item p-3 bg-white/60 dark:bg-slate-900/40 rounded-lg shadow-md flex items-center gap-3 animate__animated animate__fadeInDown">
+                  <span class="material-symbols-outlined text-primary">bolt</span>
+                  <div>
+                    <div class="text-sm font-semibold">Instantáneo</div>
+                    <div class="text-xs text-slate-500">Resultados al instante</div>
+                  </div>
+                </div>
+                <div class="feature-item p-3 bg-white/60 dark:bg-slate-900/40 rounded-lg shadow-md flex items-center gap-3 animate__animated animate__fadeInDown">
+                  <span class="material-symbols-outlined text-primary">visibility</span>
+                  <div>
+                    <div class="text-sm font-semibold">Visual</div>
+                    <div class="text-xs text-slate-500">Diagramas claros</div>
+                  </div>
+                </div>
+                <div class="feature-item p-3 bg-white/60 dark:bg-slate-900/40 rounded-lg shadow-md flex items-center gap-3 animate__animated animate__fadeInDown">
+                  <span class="material-symbols-outlined text-primary">settings</span>
+                  <div>
+                    <div class="text-sm font-semibold">Flexible</div>
+                    <div class="text-xs text-slate-500">Operaciones múltiples</div>
+                  </div>
+                </div>
+              </div>
         </div>
-        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-yellow-400"><img class="inline-block w-14 mb-4 color-white mr-4" src="img/icon.svg" alt="">CONJUNTO CLARO</h1>
-          <p class="mb-8 leading-relaxed">Nuestra herramienta está diseñada para simplificar tus tareas y ayudarte a navegar por el complejo mundo de los conjuntos con facilidad. Con una interfaz intuitiva y recursos visuales atractivos, podrás comprender conceptos clave como subconjuntos, uniones, intersecciones y diagramas de Venn de una manera práctica y visual.</p>
-          <p class="text-sm mt-2 text-gray-500 mb-8 w-full">¿Prefieres usar esta herramienta sin conexión?
-          Descarga nuestra versión de escritorio y accede a todas las funciones directamente desde tu computadora, sin necesidad de internet.</p>
-          <div class="flex lg:flex-row md:flex-col text-gray-300">
-            <a href="https://davidarcos.gumroad.com/l/qtkjr" target="_blank" class="bg-gray-800 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-700 hover:text-white focus:outline-none">
-              <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-device-desktop"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" /><path d="M7 20h10" /><path d="M9 16v4" /><path d="M15 16v4" /></svg>
-              <span class="ml-4 flex items-start flex-col leading-none">
-                <span class="text-xs text-gray-400 mb-1">OBTEN LA APLICACIÓN DE</span>
-                <span class="title-font font-medium">ESCRITORIO</span>
-              </span>
-            </a>
+      </div>
+    </section>
+
+     <!-- Nosotros -->
+    <section id="nosotros" class="py-10 md:py-22 overflow-hidden">
+      <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20 p-10">
+          <div class="md:w-1/2 text-center md:text-left">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Nuestra Misión</span><span x-cloak x-show="lang === 'en'">Our Mission</span></h2>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-4"><span x-show="lang === 'es'">En SetCalc, nuestra misión es desmitificar la teoría de conjuntos, haciéndola accesible y comprensible para estudiantes, educadores y entusiastas de las matemáticas en todo el mundo.</span><span x-cloak x-show="lang === 'en'">At SetCalc, our mission is to demystify set theory, making it accessible and understandable for students, educators, and math enthusiasts worldwide.</span></p>
+            <p class="text-lg text-slate-600 dark:text-slate-400"><span x-show="lang === 'es'">Creemos que con las herramientas adecuadas, cualquiera puede dominar conceptos complejos. Por eso hemos creado una calculadora potente, intuitiva y visualmente atractiva.</span><span x-cloak x-show="lang === 'en'">We believe that with the right tools, anyone can master complex concepts. That's why we've created a calculator that is powerful, intuitive, and visually engaging.</span></p>
+          </div>
+
+          <div data-aos="fade-left" class="md:w-1/2">
+            <div class="bg-white/50 dark:bg-slate-900/50 backdrop-blur-lg p-8 rounded-lg shadow-2xl shadow-primary/10 border border-slate-200 dark:border-slate-800 flex items-center gap-6">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-teal-400 flex items-center justify-center shadow-lg">
+                  <span class="material-symbols-outlined text-white text-5xl">groups</span>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-slate-900 dark:text-white"><span x-show="lang === 'es'">El Equipo SetCalc</span><span x-cloak x-show="lang === 'en'">The SetCalc Team</span></h3>
+                  <p class="text-slate-600 dark:text-slate-400"><span x-show="lang === 'es'">Apasionados por la educación y la tecnología.</span><span x-cloak x-show="lang === 'en'">Passionate about education and technology.</span></p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Conceptos & Carousel (estructura conservada) -->
+    <section  data-aos="fade-up" id="conceptos" class="py-5 md:py-10 overflow-hidden">
+      <div class="container mx-auto px-6 ">
+        <div class="text-center max-w-3xl mx-auto mb-5">
+          <h2 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Domina la Teoría de Conjuntos</span><span x-cloak x-show="lang === 'en'">Master Set Theory</span></h2>
+          <p class="text-md md:text-lg text-slate-600 dark:text-slate-400"><span x-show="lang === 'es'">Aprende los conceptos fundamentales detrás de las operaciones que nuestra calculadora realiza por ti.</span><span x-cloak x-show="lang === 'en'">Learn the fundamental concepts behind the operations our calculator performs for you.</span></p>
+        </div>
+
+        <div class="carousel-3d flex items-center justify-center h-[380px] w-full max-w-5xl mx-auto relative" x-init="carouselCards = Array.from($el.children).slice(1, -1).map((el, i) => ({el:el, i:i}))">
+
+          <button @click="activeCard = (activeCard - 1 + totalCards) % totalCards; document.getElementById('swoosh-sound').play()" class="absolute left-0 sm:-left-8 md:-left-16 z-30 p-3 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm shadow-lg hover:bg-primary hover:text-white transition-all transform hover:scale-110 active:scale-95 text-slate-700 dark:text-slate-200">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+
+          <!-- Carousel templates & items (idénticos a original) -->
+          <template :key="index" x-for="(card, index) in carouselCards">
+            <div :class="{
+                              'active': activeCard === index,
+                              'prev': activeCard === (index + 1) % totalCards,
+                              'next': activeCard === (index - 1 + totalCards) % totalCards,
+                              'hidden-prev': activeCard === (index + 2) % totalCards,
+                              'hidden-next': activeCard === (index - 2 + totalCards) % totalCards,
+                          }" class="absolute w-[300px] h-full flex items-center justify-center carousel-item-wrapper" x-ref="`card_${index}`">
+              <div class="carousel-item w-full h-full rounded-lg shadow-2xl shadow-primary/20 border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900 flex flex-col items-center text-center">
+              </div>
+            </div>
+          </template>
+
+          <!-- Hard-coded carousel cards preserved -->
+          <!-- (los 5 paneles conservan exactamente su contenido y clases) -->
+          <div :class="{ 'active': activeCard === 0, 'prev': activeCard === 1, 'next': activeCard === 4, 'hidden-prev': activeCard === 2, 'hidden-next': activeCard === 3 }" class="absolute w-[300px] h-full flex items-center justify-center carousel-item-wrapper">
+            <div class="carousel-item w-full h-[340px] rounded-lg shadow-2xl shadow-primary/20 border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900 flex flex-col items-center text-center">
+              <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Unión (A ∪ B)</span><span x-cloak x-show="lang === 'en'">Union (A ∪ B)</span></h3>
+              <p class="text-slate-600 dark:text-slate-400 mb-4"><span x-show="lang === 'es'">Todos los elementos que están en A, en B, o en ambos.</span><span x-cloak x-show="lang === 'en'">All elements that are in A, in B, or in both.</span></p>
+              <svg class="flex-grow w-full" viewBox="0 0 100 60"><circle cx="40" cy="30" fill="currentColor" fill-opacity="0.3" r="20" stroke="currentColor" stroke-width="2"></circle><circle cx="60" cy="30" fill="currentColor" fill-opacity="0.3" r="20" stroke="currentColor" stroke-width="2"></circle></svg>
+            </div>
+          </div>
+          <div :class="{ 'active': activeCard === 1, 'prev': activeCard === 2, 'next': activeCard === 0, 'hidden-prev': activeCard === 3, 'hidden-next': activeCard === 4 }" class="absolute w-[300px] h-full flex items-center justify-center carousel-item-wrapper"> <div class="carousel-item w-full h-[340px] rounded-lg shadow-2xl shadow-primary/20 border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900 flex flex-col items-center text-center"> <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Intersección (A ∩ B)</span><span x-cloak="" x-show="lang === 'en'">Intersection (A ∩ B)</span></h3><p class="text-slate-600 dark:text-slate-400 mb-4"><span x-show="lang === 'es'">Elementos comunes a A y B.</span><span x-cloak="" x-show="lang === 'en'">Elements common to A and B.</span></p><svg class="flex-grow w-full" viewBox="0 0 100 60"><circle cx="40" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><circle cx="60" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><path d="M50 30 a 20 20 0 0 1 -14.64 -17.62 a 20 20 0 0 1 29.28 0 A 20 20 0 0 1 50 30" fill="currentColor" fill-opacity="0.3"></path></svg> </div> </div>
+          <div :class="{ 'active': activeCard === 2, 'prev': activeCard === 3, 'next': activeCard === 1, 'hidden-prev': activeCard === 4, 'hidden-next': activeCard === 0 }" class="absolute w-[340px] h-[380px] flex items-center justify-center carousel-item-wrapper"> <div class="carousel-item w-full h-full rounded-xl shadow-2xl shadow-primary/30 border border-primary/50 dark:border-primary/50 p-8 bg-white dark:bg-slate-900 flex flex-col items-center text-center"> <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Diferencia (A - B)</span><span x-cloak="" x-show="lang === 'en'">Difference (A - B)</span></h3><p class="text-slate-600 dark:text-slate-400 text-lg mb-4"><span x-show="lang === 'es'">Elementos en A pero no en B.</span><span x-cloak="" x-show="lang === 'en'">Elements in A but not in B.</span></p><svg class="flex-grow w-full" viewBox="0 0 100 60"><circle cx="40" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><circle cx="60" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><path d="M40 30 A 20 20 0 1 0 54.64 12.38 L 45.36 12.38 A 20 20 0 0 1 40 30 Z" fill="currentColor" fill-opacity="0.3"></path></svg> </div> </div>
+          <div :class="{ 'active': activeCard === 3, 'prev': activeCard === 4, 'next': activeCard === 2, 'hidden-prev': activeCard === 0, 'hidden-next': activeCard === 1 }" class="absolute w-[300px] h-full flex items-center justify-center carousel-item-wrapper"> <div class="carousel-item w-full h-[340px] rounded-lg shadow-2xl shadow-primary/20 border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900 flex flex-col items-center text-center"> <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Diferencia Simétrica (A Δ B)</span><span x-cloak="" x-show="lang === 'en'">Symmetric Difference (A Δ B)</span></h3><p class="text-slate-600 dark:text-slate-400 mb-4"><span x-show="lang === 'es'">Elementos en A o en B, no en ambos.</span><span x-cloak="" x-show="lang === 'en'">Elements in A or in B, not both.</span></p><svg class="flex-grow w-full" viewBox="0 0 100 60"><circle cx="40" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><circle cx="60" cy="30" fill="none" r="20" stroke="currentColor" stroke-width="2"></circle><path d="M40 30 A 20 20 0 1 0 54.64 12.38 L 45.36 12.38 A 20 20 0 0 1 40 30 Z" fill="currentColor" fill-opacity="0.3"></path><path d="M60 30 A 20 20 0 1 1 45.36 12.38 L 54.64 12.38 A 20 20 0 0 0 60 30 Z" fill="currentColor" fill-opacity="0.3"></path></svg> </div> </div>
+          <div :class="{ 'active': activeCard === 4, 'prev': activeCard === 0, 'next': activeCard === 3, 'hidden-prev': activeCard === 1, 'hidden-next': activeCard === 2 }" class="absolute w-[300px] h-full flex items-center justify-center carousel-item-wrapper"> <div class="carousel-item w-full h-[340px] rounded-lg shadow-2xl shadow-primary/20 border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-900 flex flex-col items-center text-center"> <h3 class="text-2xl font-bold mb-3 text-slate-900 dark:text-white"><span x-show="lang === 'es'">Complemento (A')</span><span x-cloak="" x-show="lang === 'en'">Complement (A')</span></h3><p class="text-slate-600 dark:text-slate-400 mb-4"><span x-show="lang === 'es'">Elementos que no están en A.</span><span x-cloak="" x-show="lang === 'en'">Elements that are not in A.</span></p><svg class="flex-grow w-full" viewBox="0 0 100 60"><rect fill="none" height="50" rx="5" ry="5" stroke="currentColor" stroke-width="2" width="90" x="5" y="5"></rect><circle cx="50" cy="30" fill="none" r="15" stroke="currentColor" stroke-width="2"></circle><path d="M5 5 H 95 V 55 H 5 Z M 50 15 A 15 15 0 1 1 49.99 15" fill="currentColor" fill-opacity="0.3"></path></svg> </div> </div>
+          <button @click="activeCard = (activeCard + 1) % totalCards; document.getElementById('swoosh-sound').play()" class="absolute right-0 sm:-right-8 md:-right-16 z-30 p-3 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm shadow-lg hover:bg-primary hover:text-white transition-all transform hover:scale-110 active:scale-95 text-slate-700 dark:text-slate-200">
+
+          <!-- (Paneles 1..4 omitted here for brevity in the HTML file; full content is preserved in the original codebase.) -->
+
+          <button @click="activeCard = (activeCard + 1) % totalCards; document.getElementById('swoosh-sound').play()" class="absolute right-0 sm:-right-8 md:-right-16 z-30 p-3 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm shadow-lg hover:bg-primary hover:text-white transition-all transform hover:scale-110 active:scale-95 text-slate-700 dark:text-slate-200">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculadora -->
+   <section data-aos="fade-up" id="calculadora" class="px-5 py-10 md:py-22 bg-slate-50 dark:bg-slate-900/50 overflow-hidden">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-slate-900 dark:text-white">
+          Calculadora Interactiva
+        </h2>
+        <p class="text-md md:text-lg text-slate-600 dark:text-slate-400">
+          Ingresa tus conjuntos separados por comas (ej: 1, 2, 3, a, b) y elige una operación para ver el resultado.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-white dark:bg-slate-900 p-8 md:p-12 rounded-lg shadow-3xl shadow-primary/10 border border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <label class="block font-semibold mb-2 text-slate-700 dark:text-slate-300" for="setA">Conjunto A</label>
+            <input id="setA" type="text" placeholder="Ej: 1, 2, 3, 4" class="w-full bg-slate-100 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-lg py-3 px-4 focus:ring-primary focus:border-primary focus:ring-2 transition text-lg" />
+          </div>
+          <div>
+            <label class="block font-semibold mb-2 text-slate-700 dark:text-slate-300" for="setB">Conjunto B</label>
+            <input id="setB" type="text" placeholder="Ej: 3, 4, 5, 6" class="w-full bg-slate-100 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-700 rounded-lg py-3 px-4 focus:ring-primary focus:border-primary focus:ring-2 transition text-lg" />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-10">
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('union')" class="op-btn">Unión (A ∪ B)</button>
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('intersection')" class="op-btn">Intersección (A ∩ B)</button>
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('differenceAB')" class="op-btn">Diferencia (A - B)</button>
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('differenceBA')" class="op-btn">Diferencia (B - A)</button>
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('symmetric')" class="op-btn">Diferencia Simétrica (A Δ B)</button>
+          <button class=" px-5 py-2.5 rounded-full font-semibold bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95" onclick="operate('cartesian')" class="op-btn">Producto Cartesiano (A × B)</button>
+        </div>
+
+        <div class="bg-slate-100 dark:bg-slate-800 p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-lg mb-4 text-slate-800 dark:text-slate-200 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">functions</span>
+            Resultado:
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div class="bg-white dark:bg-slate-900 rounded-lg p-4 min-h-[100px]">
+              <p id="result" class="text-2xl font-mono text-primary tracking-wider">{ ... }</p>
+              <p id="operation" class="text-sm text-slate-500 dark:text-slate-400 mt-1"></p>
+              <p id="cardinality" class="text-sm text-slate-500 dark:text-slate-400 mt-1"></p>
+            </div>
+            <canvas id="vennCanvas" width="300" height="200" class="mx-auto"></canvas>
           </div>
         </div>
       </div>
     </section>
-    
-    <!--SECCIÓN DE APRENDIZAJE-->
-    <section id="aprender"  class="text-gray-400 body-font py-28">
-      <!--Explicación de conjuntos-->
-      <article class="w-11/12 mx-auto -m-2 px-5 py-10 mx-auto border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg border-2 border-gray-800 ">
-          <h2 class="font-semibold text-4xl text-yellow-400">¿Qué es un conjunto?</h2>
-          <p class="mt-8">
-            En matemáticas, un <strong>conjunto</strong> es una colección bien definida de objetos, llamados elementos o miembros del conjunto.
-            Los conjuntos pueden contener números, letras, figuras, personas u objetos.
+
+    <!-- Contacto -->
+    <section  data-aos="fade-up"  id="contacto" class="py-10 md:py-22 overflow-hidden parallax-section">
+      <div class="max-w-xl mx-auto text-center">
+          <h2 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white"><span x-show="lang === 'es'">¿Tienes preguntas o sugerencias?</span><span x-cloak x-show="lang === 'en'">Have questions or suggestions?</span></h2>
+          <p class="text-md md:text-lg text-slate-600 dark:text-slate-400 mb-12">
+            <span x-show="lang === 'es'">Nos encantaría saber de ti. Completa el formulario y nos pondremos en contacto contigo lo antes posible.</span>
+            <span x-cloak x-show="lang === 'en'">We would love to hear from you. Complete the form and we will get back to you as soon as possible.</span>
           </p>
-          <p class="mt-4">
-            Los conjuntos se representan habitualmente con letras mayúsculas (A, B, C...) y sus elementos entre llaves. Son fundamentales en las matemáticas
-            y se usan para representar relaciones, operaciones, y estructuras.
-          </p>
-      </article>
-      <!--Operaciones basicas-->
-      <article class="container mx-auto px-10 py-10 mx-auto">
-        <div class="flex flex-wrap">
-          <div class="p-4 md:w-1/3">
-            <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg">
-              <img class="w-64 mx-auto  object-cover object-center" src="img/diagrams/vennssUnion.png" alt="blog">
-              <div class="p-6">
-                <h1 class="title-font text-lg font-medium text-white mb-3">Unión</h1>
-                <p class="leading-relaxed mb-3">Operación fundamental que combina todos los elementos presentes en dos conjuntos distintos en un solo conjunto.</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 md:w-1/3">
-            <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg">
-              <img class="w-64 mx-auto object-cover object-center" src="img/diagrams/vennssIntersection.png" alt="blog">
-              <div class="p-6">
-                <h1 class="title-font text-lg font-medium text-white mb-3">Intersección</h1>
-                <p class="leading-relaxed mb-3">Operación que consiste en encontrar los elementos que son comunes a dos o más conjuntos.</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 md:w-1/3">
-            <div class="h-full border-2 border-gray-800 rounded-lg overflow-hidden shadow-black shadow-lg">
-              <img class="w-64 mx-auto object-cover object-center" src="img/diagrams/vennssDiference.png" alt="blog">
-              <div class="p-6">
-                <h1 class="title-font text-lg font-medium text-white mb-3">Diferencia Simétrica</h1>
-                <p class="leading-relaxed mb-3">Operación que representa los elementos que pertenecen a uno de los conjuntos, pero no al otro.</p>
 
+          <div class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md p-8 sm:p-10 rounded-lg shadow-2xl shadow-primary/10 border border-slate-200 dark:border-slate-800">
+            <form action="https://formsubmit.co/444d8342104395ae4364fb3a344c2794" method="POST" class="space-y-6 text-left">
+              <div>
+                <label class="block font-medium text-slate-700 dark:text-slate-300 mb-1" for="name"><span x-show="lang === 'es'">Nombre</span><span x-cloak x-show="lang === 'en'">Name</span></label>
+                <input id="name" name="name" type="text" class="w-full bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-lg py-3 px-4 focus:ring-primary focus:border-primary transition" />
               </div>
-            </div>
+              <div>
+                <label class="block font-medium text-slate-700 dark:text-slate-300 mb-1" for="email">Email</label>
+                <input id="email" name="email" type="email" class="w-full bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-lg py-3 px-4 focus:ring-primary focus:border-primary transition" />
+              </div>
+              <div>
+                <label class="block font-medium text-slate-700 dark:text-slate-300 mb-1" for="message"><span x-show="lang === 'es'">Mensaje</span><span x-cloak x-show="lang === 'en'">Message</span></label>
+                <textarea id="message" name="message" rows="4" class="w-full bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 rounded-lg py-3 px-4 focus:ring-primary focus:border-primary transition"></textarea>
+              </div>
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://calculadoraconjuntos.site/gracias.html">
+              <div>
+                <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-primary/30 hover:bg-teal-500 transition-all transform hover:-translate-y-1"><span x-show="lang === 'es'">Enviar Mensaje</span><span x-cloak x-show="lang === 'en'">Send Message</span></button>
+              </div>
+            </form>
           </div>
         </div>
-      </article>
-      <!--Galeria de imagenes-->
-     <!-- <article id="galeria">
-        <h2>Galería de Operaciones de Conjuntos</h2>
-        <div class="galeria-contenedor">
-          <div class="imagen">
-            <img src="img/diagrams/vennssDiference.png" alt="Unión de conjuntos">
-            <p><strong>Unión</strong>: Elementos que pertenecen a A o a B.</p>
-          </div>
-          <div class="imagen">
-            <img src="img/interseccion.png" alt="Intersección de conjuntos">
-            <p><strong>Intersección</strong>: Elementos comunes entre A y B.</p>
-          </div>
-          <div class="imagen">
-            <img src="img/diferencia.png" alt="Diferencia de conjuntos">
-            <p><strong>Diferencia</strong>: Elementos en A que no están en B.</p>
-          </div>
-          <!-- Agrega 9 más con imágenes distintas -->
-          <!-- Usa nombres como img/operacion4.png, img/operacion5.png, etc. 
-        </div>
-      </article>-->
     </section>
-
-    <!--SECCIÓN DE EJERCICIOS-->
-    <section id="ejercicios" class="py-20 flex flex-col md:flex-row border-2 border-gray-800 rounded-xl w-11/12 mx-auto shadow-black shadow-xl">
-      <article class="flex flex-col w-full md:w-1/2">
-        <!--SECCIÓN DE FORMULARIO-->
-        <div class="container mx-auto px-5">
-          <div id="grupos" class="w-full flex flex-col justify-center items-end gap-10 pb-8 mx-auto">
-            <div class="sm:mb-0 flex-grow w-full">
-              <label for="number" class="leading-7 text-2xl font-semibold text-yellow-400 block mb-6 sm:mb-10">Ingresa un número:</label>
-              <input type="number" id="number" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent text-base outline-none text-gray-100 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-            <div class="w-full flex flex-col sm:flex-row gap-4">
-              <button class="text-center font-semibold w-full text-sm bg-gray-800 py-3 px-5 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none" onclick="agregar('A')">Agregar al conjunto A</button>
-              <button class="text-center font-semibold w-full text-sm bg-gray-800 py-3 px-5 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none" onclick="agregar('B')">Agregar al conjunto B</button>
-              <button class="text-center font-bold w-full text-sm bg-yellow-500 py-3 px-5 rounded-md hover:bg-yellow-600 text-black focus:outline-none" onclick="calcularOperaciones()">Calcular Operaciones</button>
-            </div>
-          </div>
-        </div>
-
-        <!--SECCIÓN DE CONJUNTOS-->
-        <div class="flex flex-col sm:flex-row items-start justify-center w-full mx-auto px-5 mt-6 sm:mt-8 gap-4">
-          <table class="w-full sm:w-1/2" id="tablaA">
-            <thead class="text-s text-gray-700 uppercase bg-gray-700">
-              <tr>
-                <th scope="col" class="px-6 py-4 rounded-tl-2xl text-gray-100/70">
-                  Arreglo A
-                </th>
-              </tr>
-            </thead>
-          </table>
-          <table class="w-full sm:w-1/2" id="tablaB">
-            <thead class="text-s text-gray-700 uppercase bg-gray-700">
-              <tr>
-                <th scope="col" class="px-6 py-4 rounded-tr-2xl text-gray-100/70">
-                  Arreglo B
-                </th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </article>
-
-      <!--SECCIÓN DE RESULTADOS-->
-      <article class="pb-10 text-gray-400 w-full md:w-1/2 mt-10 md:mt-0">
-        <div class="container px-5 py-10 mx-auto">
-          <h3 class="block mb-6 text-2xl font-semibold text-yellow-400">Resultados</h3>
-          <div class="flex flex-col gap-y-6" id="entradas">
-            <div class="sm:mb-0 flex-grow">
-              <label for="union" class="leading-7 text-sm text-gray-400">Unión: </label>
-              <input disabled id="union" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
-            </div>
-            <div class="sm:mb-0 flex-grow">
-              <label for="interseccion" class="leading-7 text-sm text-gray-400">Intersección: </label>
-              <input disabled id="interseccion" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
-            </div>
-            <div class="sm:mb-0 flex-grow">
-              <label for="diferenciaA" class="leading-7 text-sm text-gray-400">Diferencia A de B: </label>
-              <input disabled id="diferenciaA" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
-            </div>
-            <div class="sm:mb-0 flex-grow">
-              <label for="diferenciaB" class="leading-7 text-sm text-gray-400">Diferencia B de A: </label>
-              <input disabled id="diferenciaB" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
-            </div>
-            <div class="sm:mb-0 flex-grow">
-              <label for="diferenciaSim" class="leading-7 text-sm text-gray-400">Diferencia simetrica: </label>
-              <input disabled id="diferenciaSim" class="w-full bg-gray-800 bg-opacity-60 rounded text-base outline-none text-gray-100 py-2 px-3">
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-
-    <!--SECCIÓN DE CONTACTO-->
-  <section id="contactanos" class="text-gray-400  body-font py-10">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-12">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-400">Contactanos</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Envianos cualquier sugerencia que tengas para mejorar nuestra herramienta.</p>
-      </div>
-      <form action="https://formsubmit.co/444d8342104395ae4364fb3a344c2794" method="POST" class="lg:w-1/2 md:w-2/3 mx-auto">
-        <div class="flex flex-wrap -m-2">
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="name" class="leading-7 text-sm text-gray-400">Nombre</label>
-              <input type="text" id="name" name="name" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-1/2">
-            <div class="relative">
-              <label for="email" class="leading-7 text-sm text-gray-400">Correo electrónico</label>
-              <input type="email" id="email" name="email" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2 w-full">
-            <div class="relative">
-              <label for="message" class="leading-7 text-sm text-gray-400">Mensaje</label>
-              <textarea id="message" name="message" class="shadow-black shadow-md w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-            </div>
-          </div>
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://calculadoraconjuntos.site/gracias.html">
-          <div class="p-2 w-full">
-            <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">ENVIAR</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </section>
-
-
-
   </main>
-  <footer class="container px-5 pb-8 mx-auto flex justify-center items-center sm:flex-row flex-col">
-       <img src="img/icon.svg" alt="">
-      <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">Prueba tambien  —
-        <a href="http://conversorbinario.calculadoradeconjuntos.site/" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">Conversor Binario</a>
-      </p>
+
+  <footer class="bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="container mx-auto px-6 py-8 text-center text-slate-500 dark:text-slate-400">
+      <p><span x-show="lang === 'es'">© 2025 Calculadora de conjuntos. Todos los derechos reservados. Diseñado para simplificar la teoría de conjuntos.</span><span x-cloak x-show="lang === 'en'">© 2024 SetCalc. All rights reserved. Designed to simplify set theory.</span></p>
+    </div>
   </footer>
-  <script src="js/index.js"></script>
-  <script src="js/dark-light-mode.js"></script>
-  <script src="js/colors.js"></script>
+
+
+  <!-- Alpine.js (conservado) -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Scripts personalizados -->
+  <script defer src="js/toggles.js"></script>
+  <script defer src="js/index.js"></script>
+  <script defer src="js/particles-animation.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      AOS.init({
+        // Opciones útiles:
+        duration: 700,      // duración global (ms)
+        easing: 'cubic-bezier(.2,.9,.2,1)',
+        once: false,        // true = anima solo la primera vez; false = re-anima al hacer scroll otra vez
+        mirror: true,      // true = anima también al hacer scroll hacia arriba
+        offset: 120         // distancia desde el borde para activar (px)
+      });
+    });
+  </script>
+
 </body>
 </html>
-

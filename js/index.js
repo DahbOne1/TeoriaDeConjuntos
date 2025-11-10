@@ -1,133 +1,82 @@
-const arregloA = [];
-const arregloB = [];
+function parseSet(str) {
+    return new Set(
+      str.split(",").map(s => s.trim()).filter(s => s !== "")
+    );
+  }
 
-//funcion para agregar el numero a uno de los arreglos (A o B)
-function agregar(letra1) {
-  if (document.getElementById("number").value == "") {//Evaluamos que la entrada no este vacia
-    alert("Introduce un número valido");
-  } else {
-    let numero = document.getElementById("number").value;
-    var letra = letra1.toString();
-    var estado;
-    if (letra == "A") {//Evaluamos a que arreglo agregamos el numero
-      estado = comprobar(numero, arregloA);
-      if (estado == false) {
-        arregloA.push(numero);
-        crearTabla("A", arregloA);
-      } else if (estado == true) {
-        alert("No se puede agregar un numero repetido");
-      }
-    } else if (letra == "B") {//Evaluamos a que arreglo agregamos el numero
-      estado = comprobar(numero, arregloB);
-      if (estado == false) {
-        arregloB.push(numero);
-        crearTabla("B", arregloB);
-      } else if (estado == true) {
-        alert("No se puede agregar un numero repetido");
-      }
+  function operate(type) {
+    const setA = parseSet(document.getElementById("setA").value);
+    const setB = parseSet(document.getElementById("setB").value);
+
+    let resultSet = new Set();
+    let operationName = "";
+
+    switch (type) {
+      case "union":
+        resultSet = new Set([...setA, ...setB]);
+        operationName = "Unión (A ∪ B)";
+        break;
+      case "intersection":
+        resultSet = new Set([...setA].filter(x => setB.has(x)));
+        operationName = "Intersección (A ∩ B)";
+        break;
+      case "differenceAB":
+        resultSet = new Set([...setA].filter(x => !setB.has(x)));
+        operationName = "Diferencia (A - B)";
+        break;
+      case "differenceBA":
+        resultSet = new Set([...setB].filter(x => !setA.has(x)));
+        operationName = "Diferencia (B - A)";
+        break;
+      case "symmetric":
+        resultSet = new Set([...setA, ...setB].filter(x => !(setA.has(x) && setB.has(x))));
+        operationName = "Diferencia Simétrica (A Δ B)";
+        break;
+      case "cartesian":
+        resultSet = new Set([...setA].flatMap(a => [...setB].map(b => `(${a},${b})`)));
+        operationName = "Producto Cartesiano (A × B)";
+        break;
+    }
+
+    const resultArray = [...resultSet];
+    document.getElementById("result").textContent = `{ ${resultArray.join(", ")} }`;
+    document.getElementById("operation").textContent = `Operación: ${operationName}`;
+    document.getElementById("cardinality").textContent = `Cardinalidad: ${resultSet.size}`;
+
+    drawVenn(setA, setB, type);
+  }
+
+  function drawVenn(A, B, type) {
+    const canvas = document.getElementById("vennCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const circleA = { x: 110, y: 100, r: 60 };
+    const circleB = { x: 190, y: 100, r: 60 };
+
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "#3b82f6";
+    ctx.beginPath();
+    ctx.arc(circleA.x, circleA.y, circleA.r, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.fillStyle = "#f97316";
+    ctx.beginPath();
+    ctx.arc(circleB.x, circleB.y, circleB.r, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = "#111827";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("A", circleA.x - 30, circleA.y);
+    ctx.fillText("B", circleB.x + 30, circleB.y);
+
+    if (type === "intersection") {
+      ctx.globalAlpha = 0.7;
+      ctx.fillStyle = "#10b981";
+      ctx.beginPath();
+      ctx.arc(150, 100, 30, 0, 2 * Math.PI);
+      ctx.fill();
     }
   }
-}
-
-//Verificamos que el numero no sea repetido
-function comprobar(numero, arreglo) {
-  var comp = false;
-  for (var i = 0; i < arreglo.length; i++) {
-    if (numero == arreglo[i]) {
-      comp = true;
-    }
-  }
-  return comp;
-}
-
-//funcion para crear las tablas
-function crearTabla(letra1, arreglo) {
-  var letra = letra1.toString();
-  var tabla;
-  var tabla1;
-  if (letra == "A") {
-    tabla = document.getElementById("tablaA");
-    var tr = document.createElement("tr");
-    var td = document.createElement("th");
-    for (var i = 0; i < arreglo.length; i++) {
-      var num = arreglo[i];
-    }
-    var texto = document.createTextNode(num);
-    td.appendChild(texto);
-    td.classList.add('bg-gray-800');
-    td.classList.add('py-1');
-    tr.appendChild(td);
-    //Agregando estilos a la columna de la tabla
-    //tr.classList.add('px-6 py-4 font-medium text-gray-400 whitespace-nowrap');
-    //Construyendo la tabla
-    tabla.appendChild(tr);
-  } else if (letra == "B") {
-    tabla1 = document.getElementById("tablaB");
-    var tr1 = document.createElement("tr");
-    var td1 = document.createElement("th");
-    //td1.classList.add('px-6 py-4 font-medium text-gray-400 whitespace-nowrap');
-    for (var i = 0; i < arreglo.length; i++) {
-      var num1 = arreglo[i];
-    }
-    var texto1 = document.createTextNode(num1);
-    td1.appendChild(texto1);
-    td1.classList.add('bg-gray-800');
-    td1.classList.add('py-1');
-    tr1.appendChild(td1);
-    //Construyendo la tabla
-    tabla1.appendChild(tr1);
-  }
-}
-
-//Funcion para realizar las operaciones con los conjuntos
-function calcularOperaciones(){
-  //funcion para crear el arreglo de union
-  const union = Array.from(new Set([...arregloA, ...arregloB]));
-  let unionSalida = union.toString();
-  if (union.length == 0) {
-    unionSalida = "Conjunto vacio";
-  }
-  document.getElementById("union").value = unionSalida;
-
-  //funcion para crear el arreglo de interseccion
-  const interseccion = arregloA.filter((x) => arregloB.includes(x));
-  let intSalida = interseccion.toString();
-  if (interseccion.length == 0) {
-    intSalida = "Conjunto vacio";
-  }
-  document.getElementById("interseccion").value = intSalida;
-
-  //funcion para crear el arreglo de diferencia A
-  const diferenciaA = arregloA.filter((x) => !arregloB.includes(x));
-  let difSalidaA = diferenciaA.toString();
-  if (diferenciaA.length == 0) {
-    difSalidaA = "Conjunto vacio";
-  }
-  document.getElementById("diferenciaA").value = difSalidaA;
-  
-  //funcion para crear el arreglo de direfencia B
-  const diferenciaB = arregloB.filter((x) => !arregloA.includes(x));
-  let difSalidaB = diferenciaB.toString();
-  if (diferenciaB.length == 0) {
-    difSalidaB = "Conjunto vacio";
-  }
-  document.getElementById("diferenciaB").value = difSalidaB;
-
-  //funcion para crear el arreglo de diferencia simetrica
-  const diferenciaSim = arregloA
-    .filter((x) => !arregloB.includes(x))
-    .concat(arregloB.filter((x) => !arregloA.includes(x)));
-  let difSim = diferenciaSim.toString();
-  if (diferenciaSim.length == 0) {
-    difSim = "Conjunto vacio";
-  }
-  document.getElementById("diferenciaSim").value = difSim;
-
-}
-
- const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-
-  toggle.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-  });

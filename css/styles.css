@@ -1,81 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Toggle Switch */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-}
-
-.switch input { display: none; }
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
-  background-color: #0729466e;
-  transition: .4s;
-  border-radius: 20px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px; width: 20px;
-  left: 5px; bottom: 5px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #0729466e;
-}
-
-input:checked + .slider:before {
-  transform: translateX(30px);
-}
-
-input:checked + header {
-  background-color: #0729466e;
-}
-
-/* Temas */
-body.dark-mode {
-  background-color: #111827;
-  color: #efeff1;
-}
-
-body.light-mode {
-  background-color: #efeff1;
-  color: #111827;
+body {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 
-
-
-/*Colores de letras*/
-.color-picker{
-  display: flex;
-  gap: 6px;
-  z-index: 1000;
-  background-color: #0729466e;
-  border-radius: 30px;
-  padding: 5px 10px;
+/* Material icons variation defaults */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.color-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border-color: #efeff1;
-  border: 1px solid;
-  cursor: pointer;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
+/* Carousel 3D helpers */
+.carousel-3d { perspective: 1000px; }
+.carousel-item { transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s, filter 0.6s; transform-style: preserve-3d; }
+.carousel-item-wrapper.active .carousel-item { transform: scale(1) translateZ(0); opacity: 1; filter: blur(0px); z-index: 20; }
+.carousel-item-wrapper.prev .carousel-item { transform: translateX(-50%) scale(0.8) translateZ(-150px); opacity: 0.7; filter: blur(2px); z-index: 10; }
+.carousel-item-wrapper.next .carousel-item { transform: translateX(50%) scale(0.8) translateZ(-150px); opacity: 0.7; filter: blur(2px); z-index: 10; }
+.carousel-item-wrapper.hidden-prev .carousel-item { transform: translateX(-80%) scale(0.6) translateZ(-300px); opacity: 0; }
+.carousel-item-wrapper.hidden-next .carousel-item { transform: translateX(80%) scale(0.6) translateZ(-300px); opacity: 0; }
+
+ #particles-js { position:fixed; inset:0; z-index:0; pointer-events:none; }
+.content { position:relative; z-index:10; text-align:center;  }
